@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+<body id="default_theme" class="it_service" lang="<%- lang %>">
+<!-- loader -->
+<div class="bg_load"> <img class="loader_animation" src="/images/loaders/loader_1.png" alt="#" /> </div>
+<!-- end loader -->
+<%- include('partials/header') %>
+<!-- inner page banner -->
+<div id="inner_banner" class="section inner_banner_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="full">
+          <div class="title-holder">
+            <div class="title-holder-cell text-left">
+              <h1 class="page-title" data-key="nashiraboty">Наши Работы</h1>
+              <ol class="breadcrumb">
+                <li><a href="/" data-key="home">Главная</a></li>
+                <li class="active" data-key="our-blog">Наш блог</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end inner page banner -->
+<!-- section -->
+<div class="section padding_layout_1 blog_list">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 pull-right">
+        <div class="full">
+          <% if(posts.length > 0) {%>
+          <% for(let i=0; i < limit; i++) { %>
+          <div class="blog_section">
+            <div class="blog_feature_img"> 
+              <img class="img-responsive" src="/uploads/posts/<%- posts[i].post_img %>" alt="#"> </div>
+            <div class="blog_feature_cantant">
+              <p class="blog_head"><%- posts[i].title %></p>
+              <div class="post_info">
+                <ul>
+                  <li><i class="fa fa-user" aria-hidden="true"></i> Admin </li>
+                  <li><i class="fa fa-comment" aria-hidden="true"></i> <%- posts[i].comment_count %></li>
+                  <li><i class="fa fa-calendar" aria-hidden="true"></i> <%- posts[i].createdAt %></li>
+                </ul>
+              </div>
+              <p><%- posts[i].excerpt %></p>
+              <div class="bottom_info">
+                <div class="pull-left"><a class="btn sqaure_bt" href="/<%- lang %>/blog/<%- posts[i].id %>" data-key="podrobnee">Подробнее..<i class="fa fa-angle-right"></i></a></div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+          <% } %>
+          <% if(pagecounter) { %>
+          <div class="center">
+            <ul class="pagination style_1 mb-5">
+              <% for(let p=1;p <= pagecounter; p++) {%>
+              <% if(pageNum==p) {%><li class="active"><%}else{%><li><%}%> <a href="/<%- lang %>/blog?page=<%- p %>&category=<%- url %>"><%- p %></a></li>
+              <% } %>
+            </ul>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-left">
+        <div class="side_bar">
+       
+         
+          <div class="side_bar_blog">
+            <h4 data-key="categories">категории</h4>
+            <div class="tags">
+              <ul>
+                <% for(let i=0; i < categories.length; i++) {%>
+                <li><a href="/<%- lang %>/blog?page=1&category=<%- categories[i].category_slug %>"><%- categories[i].category %></a></li>
+                <%}%>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end section -->
+
+
+<%- include('partials/footer') %>
+<%- include('partials/js') %>
+</body>
+</html>
